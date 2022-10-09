@@ -16,7 +16,7 @@ int msg1, i;
 struct msgbuf
 {
 long mtype;
-char mtext [1];
+int mtext;
 } time_msg;
 /* Llamada a la función de creación de colas */
 msg1=crearcola(M_1);
@@ -32,12 +32,12 @@ ocupación de
 la cola */
 /* Lectura de datos de la cola */
 
-if(msgrcv(msg1,&time_msg,sizeof(time_msg.mtext[0]),1,0) == -1)
+if(msgrcv(msg1,&time_msg,sizeof(time_msg),1,0) == -1)
 {
 perror("msgrcv");
 exit(EXIT_FAILURE);
 }
-printf("El tiempo en segundos es : %d\n",time_msg.mtext[0]);
+printf("El dato enviado es : %i\n",time_msg.mtext);
 }
 }
 /* Fin función principal */
